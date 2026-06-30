@@ -1,0 +1,16 @@
+<!-- Lab 3 — Phishing Analysis Pipeline -->
+<!-- Custom detection rule for simulated phishing/mail relay traffic -->
+<!-- Author: HrishiK1107 -->
+<!-- Date: 2026-06-30 -->
+<group name="local,sysmon,network,">
+  <!-- Suspicious inbound connection on non-standard SMTP port (simulated phishing test relay) -->
+  <rule id="100026" level="10">
+    <if_group>sysmon_event3</if_group>
+    <field name="win.eventdata.destinationPort">^1025$</field>
+    <description>Suspicious Inbound Connection on Non-Standard SMTP Port 1025 - Possible Phishing Simulation/Test Mail Relay (T1071.003)</description>
+    <mitre>
+      <id>T1071.003</id>
+    </mitre>
+    <group>phishing,network_connection,</group>
+  </rule>
+</group>
